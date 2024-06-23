@@ -12,8 +12,8 @@ var configuration = new ConfigurationBuilder()
 
 var sourceDirectory = args[0];
 
-var serverPort = int.Parse(configuration["Secrets:ServerPort"] ?? "8080");
-var serverAddress = IPAddress.Parse(configuration["Secrets:ServerIpAddress"] ?? "127.0.0.1");
+var serverPort = int.Parse(configuration["Settings:ServerPort"] ?? "8080");
+var serverAddress = IPAddress.Parse(configuration["Settings:ServerIpAddress"] ?? "127.0.0.1");
 
 var client = new Client(sourceDirectory);
 
