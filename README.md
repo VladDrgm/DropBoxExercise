@@ -18,7 +18,7 @@ The app is written in C# and uses .NET 8.0.
 ```json
 {
   "Settings" : {
-    "ServerIp" : "127.0.0.1",
+    "ServerIpAddress" : "127.0.0.1",
     "ServerPort" : 5000
   }
 }
