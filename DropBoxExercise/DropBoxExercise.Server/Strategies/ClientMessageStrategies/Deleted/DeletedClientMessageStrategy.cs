@@ -14,18 +14,15 @@ public class DeletedClientMessageStrategy : IClientMessageStrategy
 
     public void Execute(string destinationDirectoryPath)
     {
-        Console.WriteLine("Checking if file exists: {0}", _messageDto.ItemPath);
         
         var fullPath = destinationDirectoryPath;
         
         var originPathDirectories = _messageDto.ItemPath.Split("/");
-        
-        // these are the directories in the target path
         var targetPathDirectories = destinationDirectoryPath.Split("/");
         
-        var fileIsInSubdirectory = originPathDirectories.Length > targetPathDirectories.Length;
+        var itemIsInSubdirectory = originPathDirectories.Length > targetPathDirectories.Length;
         
-        if (fileIsInSubdirectory)
+        if (itemIsInSubdirectory)
         {
             var subdirectoryDepth = originPathDirectories.Length - targetPathDirectories.Length;
             

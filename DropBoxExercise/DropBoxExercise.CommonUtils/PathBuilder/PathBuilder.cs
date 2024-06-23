@@ -16,12 +16,9 @@ public static class PathBuilder
         {
             var subdirectoryDepth = originPathDirectories.Length - targetPathDirectories.Length;
             
-            Console.WriteLine("Subdirectory depth : {0}", subdirectoryDepth);
-            
             for ( int i = 0; i < subdirectoryDepth; i++)
             {
                 fullPath = Path.Combine(fullPath, originPathDirectories[targetPathDirectories.Length + i]);
-                Console.WriteLine("Full path is in loop: {0}", fullPath);
             }
         }
         

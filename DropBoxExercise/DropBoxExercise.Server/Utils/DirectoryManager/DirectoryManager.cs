@@ -4,46 +4,24 @@ public static class DirectoryManager
 {
     public static void SaveFile(string path, byte[] data)
     {
-        
-        Console.WriteLine("Saving File in Directory: " + path);
-        
         File.WriteAllBytes(path, data);
     }
     
     public static void DeleteFile(string path)
     {
-        // if (fileName is null)
-        // {
-        //     Console.WriteLine("File being deleted....");
-        //     // var filesInDirectory = Directory.GetFiles(directoryPath);
-        //     // foreach (var file in filesInDirectory)
-        //     // {
-        //     //     File.Delete(file);
-        //     // }
-        //     
-        //     var isFile = File.Exists(directoryPath);
-        //     Console.WriteLine("Is file: " + isFile);
-        //     
-        //     File.Delete(directoryPath);
-        // }
-        // else
-        // {
-            if (File.Exists(path))
-            {
-                File.Delete(path);
-            }
-        // }
+        if (File.Exists(path))
+        {
+            File.Delete(path);
+        }
     }
     
     public static void CreateDirectory(string fullPath)
     {
-        Console.WriteLine("Test create directory; Directory full path: " + fullPath);
         try
         {
             if (!Directory.Exists(fullPath))
             {
                 Directory.CreateDirectory(fullPath);
-                Console.WriteLine($"Created directory: {fullPath}");
             }
             else
             {
@@ -52,7 +30,7 @@ public static class DirectoryManager
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error creating directory '{fullPath}': {ex.Message}");
+            Console.Error.WriteLine($"Error creating directory '{fullPath}': {ex.Message}");
             throw;
         }
     }
@@ -64,7 +42,6 @@ public static class DirectoryManager
             if (Directory.Exists(fullPath))
             {
                 Directory.Delete(fullPath, true); // Delete recursively
-                Console.WriteLine($"Deleted folder: {fullPath}");
             }
             else
             {
@@ -73,8 +50,8 @@ public static class DirectoryManager
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error deleting folder '{fullPath}': {ex.Message}");
-            throw; // Rethrow the exception to propagate it
+            Console.Error.WriteLine($"Error deleting folder '{fullPath}': {ex.Message}");
+            throw;
         }
     }
 }

@@ -57,23 +57,18 @@ public class Client
 
     public void StopMonitoring()
     {
-        if (_watcher != null)
-        {
-            _watcher.EnableRaisingEvents = false;
-            _watcher.Dispose();
-        }
+        _watcher.EnableRaisingEvents = false;
+        _watcher.Dispose();
     }
 
     private void NotifyCreated(string path)
     {
         if (Directory.Exists(path))
         {
-            Console.WriteLine($"Folder created: {path}");
             _observer?.OnFolderCreated(path);
         }
         else
         {
-            Console.WriteLine($"File created: {path}");
             _observer?.OnFileCreated(path);
         }
     }
@@ -82,12 +77,10 @@ public class Client
     {
         if (Directory.Exists(path))
         {
-            Console.WriteLine($"Folder changed: {path}");
             _observer?.OnFolderChanged(path);
         }
         else
         {
-            Console.WriteLine($"File changed: {path}");
             _observer?.OnFileChanged(path);
         }
     }
@@ -96,12 +89,10 @@ public class Client
     {
         if (Directory.Exists(newPath))
         {
-            Console.WriteLine($"Folder renamed from {oldPath} to {newPath}");
             _observer?.OnFolderRenamed(oldPath, newPath);
         }
         else
         {
-            Console.WriteLine($"File renamed from {oldPath} to {newPath}");
             _observer?.OnFileRenamed(oldPath, newPath);
         }
     }
@@ -110,12 +101,10 @@ public class Client
     {
         if (directoryFlag)
         {
-            Console.WriteLine($"Folder deleted: {path}");
             _observer?.OnDeleted(path);
         }
         else
         {
-            Console.WriteLine($"File deleted: {path}");
             _observer?.OnDeleted(path);
         }
     }

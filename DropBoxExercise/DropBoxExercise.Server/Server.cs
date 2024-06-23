@@ -23,7 +23,6 @@ public class Server
         {
 
             var client = _listener.AcceptTcpClient();
-            Console.WriteLine("Client connected...");
             _clientHandler.HandleClient(client);
         }
 

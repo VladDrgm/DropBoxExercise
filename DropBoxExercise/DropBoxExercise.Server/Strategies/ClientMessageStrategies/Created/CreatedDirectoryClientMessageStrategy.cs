@@ -16,7 +16,6 @@ public class CreatedDirectoryClientMessageStrategy : IClientMessageStrategy
     public void Execute(string destinationDirectoryPath)
     {
         var originPathDirectories = _messageDto.ItemPath.Split("/");
-        
         var targetPathDirectories = destinationDirectoryPath.Split("/");
         
         var directoryIsInSubdirectory = originPathDirectories.Length > targetPathDirectories.Length + 1;
@@ -25,7 +24,7 @@ public class CreatedDirectoryClientMessageStrategy : IClientMessageStrategy
         {
             var subdirectoryDepth = originPathDirectories.Length - targetPathDirectories.Length + 1;
             
-            for ( int i = 0; i < subdirectoryDepth - 1; i++)
+            for (int i = 0; i < subdirectoryDepth - 1; i++)
             {
                 destinationDirectoryPath = Path.Combine(destinationDirectoryPath, originPathDirectories[targetPathDirectories.Length + i]);
             }

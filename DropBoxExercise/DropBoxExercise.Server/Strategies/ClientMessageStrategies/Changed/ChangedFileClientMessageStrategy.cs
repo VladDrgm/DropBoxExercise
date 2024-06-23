@@ -28,9 +28,9 @@ public class ChangedFileClientMessageStrategy : IClientMessageStrategy
 
         var fileNameIsValid = ClientMessageValidator.ValidateFileName(_messageDto.ItemName);
 
-        var validate = fileDataIsValid && fileNameIsValid;
+        var isValid = fileDataIsValid && fileNameIsValid;
 
-        if (!validate)
+        if (!isValid)
         {
             throw new Exception("Change action failed.");
         }

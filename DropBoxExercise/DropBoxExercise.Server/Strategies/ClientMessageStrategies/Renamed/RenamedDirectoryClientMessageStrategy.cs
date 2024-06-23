@@ -16,8 +16,8 @@ namespace DropBoxExercise.Server.Strategies.ClientMessageStrategies.Renamed
         
         public void Execute(string directoryPath)
         {
-            string oldFullPath = PathBuilder.BuildFilePath(_messageDto.OldItemPath, directoryPath);
-            string newFullPath = PathBuilder.BuildFilePath(_messageDto.ItemPath, directoryPath);
+            var oldFullPath = PathBuilder.BuildFilePath(_messageDto.OldItemPath, directoryPath);
+            var newFullPath = PathBuilder.BuildFilePath(_messageDto.ItemPath, directoryPath);
 
             try
             {
@@ -39,7 +39,7 @@ namespace DropBoxExercise.Server.Strategies.ClientMessageStrategies.Renamed
                     Directory.Move(subdir, destSubdir);
                 }
 
-                // Now delete the old directory
+                // Delete the old directory
                 Directory.Delete(oldFullPath, true);
             }
             catch (Exception ex)

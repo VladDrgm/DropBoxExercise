@@ -119,12 +119,10 @@ namespace DropBoxExercise.Client.Domain
                 var messageLengthBytes = BitConverter.GetBytes(messageBytes.Length);
                 await networkStream.WriteAsync(messageLengthBytes, 0, messageLengthBytes.Length);
                 await networkStream.WriteAsync(messageBytes, 0, messageBytes.Length);
-
-                Console.WriteLine("Sent message: {0} , {1}", message.ItemName, message.ChangeType);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error sending message: {0}", ex.Message);
+                Console.Error.WriteLine("Error sending message: {0}", ex.Message);
             }
         }
     }

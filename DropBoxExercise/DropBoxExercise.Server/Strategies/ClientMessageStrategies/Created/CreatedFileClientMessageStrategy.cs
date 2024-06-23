@@ -25,12 +25,11 @@ public class CreatedFileClientMessageStrategy : IClientMessageStrategy
     public void Validate()
     {
         var fileDataIsValid = _messageDto.ItemData is not null;
-
         var fileNameIsValid = ClientMessageValidator.ValidateFileName(_messageDto.ItemName);
 
-        var validate = fileDataIsValid && fileNameIsValid;
+        var isValid = fileDataIsValid && fileNameIsValid;
         
-        if (!validate)
+        if (!isValid)
         {
             throw new Exception("Create action failed.");
         }

@@ -22,11 +22,7 @@ public class ClientHandler : IClientHandler
             
             var clientMessage = ClientMessageParser.Parse(networkStream);
             
-            Console.WriteLine("Message parsed: {0}", clientMessage.ToString());
-            
             ClientMessageValidator.Validate(clientMessage);
-
-            Console.WriteLine("Received message: {0}", clientMessage.ItemName);
 
             var clientMessageStrategy = ClientMessageStrategyFactory.Build(clientMessage);
 

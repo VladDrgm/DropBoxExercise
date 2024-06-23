@@ -7,7 +7,7 @@ ArgumentValidator.Validate(args);
 
 var configuration = new ConfigurationBuilder()
     .SetBasePath(AppContext.BaseDirectory)
-    .AddJsonFile("appSettings.json", optional: false, reloadOnChange: false)
+    .AddJsonFile("appSettings.json", optional: true, reloadOnChange: false)
     .Build();
 
 var sourceDirectory = args[0];
