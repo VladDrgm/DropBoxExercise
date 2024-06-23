@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DropBoxExercise.Client.Tests", "DropBoxExercise.Client.Tests\DropBoxExercise.Client.Tests.csproj", "{E7EAA88A-3828-458B-B3C5-69B519A92F45}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DropBoxExercise.Client", "DropBoxExercise.Client\DropBoxExercise.Client.csproj", "{CCF115F5-F7F0-4BFB-857E-FAE3EEDF9640}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DropBoxExercise.Server", "DropBoxExercise.Server\DropBoxExercise.Server.csproj", "{DA8DCE67-B720-4025-A760-434BE4555244}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DropBoxExercise.CommonUtils", "DropBoxExercise.CommonUtils\DropBoxExercise.CommonUtils.csproj", "{12FE8F13-A1A4-475D-BF80-97711A9088B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DropBoxExercise.Server.Tests", "DropBoxExercise.Server.Tests\DropBoxExercise.Server.Tests.csproj", "{6FC6E635-0653-4C10-8B6B-2885665473F3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E7EAA88A-3828-458B-B3C5-69B519A92F45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7EAA88A-3828-458B-B3C5-69B519A92F45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7EAA88A-3828-458B-B3C5-69B519A92F45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7EAA88A-3828-458B-B3C5-69B519A92F45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCF115F5-F7F0-4BFB-857E-FAE3EEDF9640}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCF115F5-F7F0-4BFB-857E-FAE3EEDF9640}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCF115F5-F7F0-4BFB-857E-FAE3EEDF9640}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCF115F5-F7F0-4BFB-857E-FAE3EEDF9640}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA8DCE67-B720-4025-A760-434BE4555244}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA8DCE67-B720-4025-A760-434BE4555244}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA8DCE67-B720-4025-A760-434BE4555244}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA8DCE67-B720-4025-A760-434BE4555244}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12FE8F13-A1A4-475D-BF80-97711A9088B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12FE8F13-A1A4-475D-BF80-97711A9088B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12FE8F13-A1A4-475D-BF80-97711A9088B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12FE8F13-A1A4-475D-BF80-97711A9088B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FC6E635-0653-4C10-8B6B-2885665473F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FC6E635-0653-4C10-8B6B-2885665473F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FC6E635-0653-4C10-8B6B-2885665473F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FC6E635-0653-4C10-8B6B-2885665473F3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
