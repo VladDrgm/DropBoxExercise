@@ -29,11 +29,11 @@ The app is written in C# and uses .NET 8.0.
 
 5. Run the server project with 1 argument - the target directory where the files will be stored. For example:
 ```bash
-dotnet run --project BoxDropperServer/BoxDropperServer.csproj /path/to/target/directory
+dotnet run --project DropBoxExercise/DropBoxExercise.Server.csproj /path/to/target/directory
 ```
 6. Run the client project with 1 argument - the directory to observe. For example:
 ```bash
-dotnet run --project BoxDropperClient/BoxDropperClient.csproj /path/to/observe/directory
+dotnet run --project DropBoxExercise/DropBoxExercise.Client.csproj /path/to/source/directory
 ```
 
 7. Make changes to the directory being observed by the client. Enjoy :)
