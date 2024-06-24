@@ -39,6 +39,38 @@ dotnet run --project DropBoxExercise/DropBoxExercise.Client.csproj /path/to/sour
 
 7. Make changes to the directory being observed by the client. Enjoy :)
 
+### Highlights
+
+1. The app is built with minimal extra frameworks / libraries / packages:
+    - Microsoft.Extensions.Configuration
+    - Microsoft.Extensions.Configuration.Json
+    - Moq ( for testing )
+    - FluentAssertions ( for testing )
+
+    Besides these, the app uses the built-in .NET libraries.
+
+2. The app is built with a client-server architecture.
+3. The app is built with a file watcher that observes a directory for changes.
+4. The app is built with a client that uploads the changes to the server.
+5. The app is built with a server that processes the changes and replicates them in a target directory.
+6. The app can handle the following changes:
+    - File created
+    - File deleted
+    - File renamed
+    - File modified
+    - Directory created
+    - Directory deleted
+    - Directory renamed
+7. The app can handle the following edge cases: 
+    - Copy-pasting a file
+    - Copy-pasting a directory with files
+    - Copy-pasting a directory with directories
+    - Copy-pasting a directory with files and directories
+    - Deleting a directory with files
+    - Deleting a directory with directories
+    - Deleting a directory with files and directories
+
+
 ***Please be sure to run both the client and server.***
 
 ***Does not work if monitored folder and destination folder are the same***
@@ -53,3 +85,5 @@ Improvements:
 3. Create more interfaces for the classes. Use injection for the classes.
 4. Add support for more OS systems. ( Windows / Linux )
 5. Add support for network connections. ( Not tested )
+
+Approximate time spent on the project: 12 - 16 hours.
