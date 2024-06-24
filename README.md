@@ -7,6 +7,7 @@ This app is intended to do the following:
 3. The server then processes the changes and stores them in another target directory.
 
 The app is written in C# and uses .NET 8.0.
+The app has been written and tested on a Mac OS machine.
 
 ## How to run the app
 
@@ -42,6 +43,13 @@ dotnet run --project DropBoxExercise/DropBoxExercise.Client.csproj /path/to/sour
 
 ***Does not work if monitored folder and destination folder are the same***
 
+***Did not test the app over a network, just locally.***
 
 
+Improvements:
 
+1. Client is a bit tightly coupled. Could use some refactoring.
+2. Add more error handling.
+3. Create more interfaces for the classes. Use injection for the classes.
+4. Add support for more OS systems. ( Windows / Linux )
+5. Add support for network connections. ( Not tested )

@@ -1,16 +1,17 @@
 using System.Net.Sockets;
 using DropBoxExercise.Client.Dto;
+using DropBoxExercise.Client.Interfaces;
 using DropBoxExercise.Client.Utils;
 using DropBoxExercise.CommonUtils.Enums;
 
 namespace DropBoxExercise.Client.Domain
 {
-    public class FileSyncObserver : IFileSystemObserver
+    public class FileSystemObserver : IFileSystemObserver
     {
         private readonly string _serverAddress;
         private readonly int _serverPort;
 
-        public FileSyncObserver(string serverAddress, int serverPort)
+        public FileSystemObserver(string serverAddress, int serverPort)
         {
             _serverAddress = serverAddress;
             _serverPort = serverPort;

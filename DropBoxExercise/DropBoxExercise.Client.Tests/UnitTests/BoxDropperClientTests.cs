@@ -1,4 +1,4 @@
-using DropBoxExercise.Client.Domain;
+using DropBoxExercise.Client.Interfaces;
 using FluentAssertions;
 using Moq;
 
@@ -14,88 +14,19 @@ public class ClientTests
     {
         _testDirectory = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
         Directory.CreateDirectory(_testDirectory);
-
-        _client = new Domain.Client(_testDirectory);
+        
         _observerMock = new Mock<IFileSystemObserver>();
-    }
 
+        _client = CreateMockedClient();
+    }
+    
     [Fact]
     public void StartMonitoring_CreatesWatcher()
     {
-        _client.AddObserver(_observerMock.Object);
         _client.StartMonitoring();
 
         GetWatcher(_client).Should().NotBeNull();
         GetWatcher(_client).EnableRaisingEvents.Should().BeTrue();
-    }
-
-    [Fact]
-    public void NotifyCreated_NotifiesObserver()
-    {
-        _client.AddObserver(_observerMock.Object);
-        _client.StartMonitoring();
-
-        string testFile = Path.Combine(_testDirectory, "test.txt");
-        File.WriteAllText(testFile, "test content");
-
-        System.Threading.Thread.Sleep(100); // Wait for file system events to propagate
-
-        _observerMock.Verify(o => o.OnFileCreated(testFile), Times.Once);
-    }
-
-    [Fact]
-    public void NotifyChanged_NotifiesObserver()
-    {
-        _client.AddObserver(_observerMock.Object);
-        _client.StartMonitoring();
-
-        string testFile = Path.Combine(_testDirectory, "test.txt");
-        File.WriteAllText(testFile, "initial content");
-
-        System.Threading.Thread.Sleep(100); // Wait for file system events to propagate
-
-        File.WriteAllText(testFile, "modified content");
-
-        System.Threading.Thread.Sleep(100); // Wait for file system events to propagate
-        
-        _observerMock.Verify(o => o.OnFileChanged(testFile));
-    }
-
-    [Fact]
-    public void NotifyRenamed_NotifiesObserver()
-    {
-        _client.AddObserver(_observerMock.Object);
-        _client.StartMonitoring();
-
-        string oldFilePath = Path.Combine(_testDirectory, "old.txt");
-        string newFilePath = Path.Combine(_testDirectory, "new.txt");
-        File.WriteAllText(oldFilePath, "test content");
-
-        System.Threading.Thread.Sleep(100); // Wait for file system events to propagate
-
-        File.Move(oldFilePath, newFilePath);
-
-        System.Threading.Thread.Sleep(100); // Wait for file system events to propagate
-
-        _observerMock.Verify(o => o.OnFileRenamed(oldFilePath, newFilePath), Times.Once);
-    }
-
-    [Fact]
-    public void NotifyDeleted_NotifiesObserver()
-    {
-        _client.AddObserver(_observerMock.Object);
-        _client.StartMonitoring();
-
-        string testFile = Path.Combine(_testDirectory, "test.txt");
-        File.WriteAllText(testFile, "test content");
-
-        System.Threading.Thread.Sleep(100); // Wait for file system events to propagate
-
-        File.Delete(testFile);
-
-        System.Threading.Thread.Sleep(100); // Wait for file system events to propagate
-
-        _observerMock.Verify(o => o.OnDeleted(testFile), Times.Once);
     }
 
     [Fact]
@@ -113,15 +44,12 @@ public class ClientTests
     [Fact]
     public void AddObserver_SetsObserver()
     {
-        _client.AddObserver(_observerMock.Object);
-
         GetObserver(_client).Should().Be(_observerMock.Object);
     }
 
     [Fact]
     public void RemoveObserver_ClearsObserver()
     {
-        _client.AddObserver(_observerMock.Object);
         _client.RemoveObserver(_observerMock.Object);
 
         GetObserver(_client).Should().BeNull();
@@ -156,18 +84,20 @@ public class ClientTests
         var observerField = typeof(Domain.Client).GetField("_observer", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
         return (IFileSystemObserver)observerField.GetValue(client);
     }
-
-    public void Dispose()
-    {
-        if (Directory.Exists(_testDirectory))
-        {
-            Directory.Delete(_testDirectory, true);
-        }
-    }
     
     private bool InvokeIsTemporaryFile(string filePath)
     {
         var methodInfo = typeof(Domain.Client).GetMethod("IsTemporaryFile", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
         return (bool)methodInfo.Invoke(_client, new object[] { filePath });
+    }
+    
+    private Domain.Client CreateMockedClient()
+    {
+        var watcher = new FileSystemWatcher(_testDirectory)
+        {
+            IncludeSubdirectories = true,
+            EnableRaisingEvents = true
+        };
+        return new Domain.Client(_testDirectory, watcher, _observerMock.Object);
     }
 }

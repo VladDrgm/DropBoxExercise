@@ -1,16 +1,6 @@
+using DropBoxExercise.Client.Interfaces;
+
 namespace DropBoxExercise.Client.Domain;
-
-public interface IFileSystemObserver
-{
-    void OnFileCreated(string filePath);
-    void OnFileChanged(string filePath);
-    void OnFileRenamed(string oldFilePath, string newFilePath);
-    void OnDeleted(string filePath);
-
-    void OnFolderCreated(string folderPath);
-    void OnFolderChanged(string folderPath);
-    void OnFolderRenamed(string oldFolderPath, string newFolderPath);
-}
 
 
 public class Client
@@ -19,19 +9,11 @@ public class Client
     private IFileSystemObserver? _observer;
     private FileSystemWatcher _watcher;
 
-    public Client(string sourceDirectory)
+    public Client(string sourceDirectory, FileSystemWatcher watcher, IFileSystemObserver? observer)
     {
         _sourceDirectory = sourceDirectory;
-    }
-
-    public void AddObserver(IFileSystemObserver observer)
-    {
-        _observer = observer;
-    }
-
-    public void AddWatcher(FileSystemWatcher watcher)
-    {
         _watcher = watcher;
+        _observer = observer;
     }
 
     public void RemoveObserver(IFileSystemObserver observer)
@@ -41,17 +23,10 @@ public class Client
 
     public void StartMonitoring()
     {
-        var watcher = new FileSystemWatcher(_sourceDirectory)
-        {
-            IncludeSubdirectories = true,
-            EnableRaisingEvents = true
-        };
-        watcher.Created += OnCreated;
-        watcher.Changed += OnChanged;
-        watcher.Renamed += OnRenamed;
-        watcher.Deleted += OnDeleted;
-
-        AddWatcher(watcher);
+        _watcher.Created += OnCreated;
+        _watcher.Changed += OnChanged;
+        _watcher.Renamed += OnRenamed;
+        _watcher.Deleted += OnDeleted;
         Console.WriteLine("Monitoring directory: {0}", _sourceDirectory);
     }
 

@@ -15,10 +15,15 @@ var sourceDirectory = args[0];
 var serverPort = int.Parse(configuration["Settings:ServerPort"] ?? "8080");
 var serverAddress = IPAddress.Parse(configuration["Settings:ServerIpAddress"] ?? "127.0.0.1");
 
-var client = new Client(sourceDirectory);
+var watcher = new FileSystemWatcher(sourceDirectory)
+{
+    EnableRaisingEvents = true,
+    IncludeSubdirectories = true
+};
 
-var fileSyncObserver = new FileSyncObserver(serverAddress.ToString(), serverPort);
-client.AddObserver(fileSyncObserver);
+var fileSyncObserver = new FileSystemObserver(serverAddress.ToString(), serverPort);
+
+var client = new Client(sourceDirectory, watcher, fileSyncObserver);
 
 client.StartMonitoring();
 
