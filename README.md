@@ -1,4 +1,4 @@
-# BoxDropper/README.md
+# DropBoxExercise/README.md
 
 This app is intended to do the following:
 
