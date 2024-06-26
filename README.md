@@ -14,6 +14,9 @@ The app has been written and tested on a Mac OS machine.
 1. Clone the repository.
 2. Be sure to have .NET 8.0 installed.
 3. Add appSettings.json files to both the client and server projects.
+
+  ***In the case in which you don't have the appSettings.json file, the app will use the default values of Ip: 127.0.0.1 and port 8080***
+
 4. An example of the appSettings.json file ( for both projects ) is shown below:
 
 ```json
@@ -24,9 +27,6 @@ The app has been written and tested on a Mac OS machine.
   }
 }
 ```
-
-***In the case in which you don't have the appSettings.json file, the app will use the default values of Ip: 127.0.0.1 and port 8080***
-
 
 5. Run the server project with 1 argument - the target directory where the files will be stored. For example:
 ```bash
